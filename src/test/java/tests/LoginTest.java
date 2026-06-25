@@ -1,14 +1,18 @@
 package tests;
 
+import base.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import pages.LoginPage;
 
 public class LoginTest {
+
     public static void main(String[] args) {
 
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://opensource-demo.orangehrmlive.com");
+        WebDriver driver = DriverFactory.initDriver();
 
-        System.out.println("Browser launched successfully");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("Admin", "admin123");
+
+        driver.quit();
     }
 }
