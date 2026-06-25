@@ -1,18 +1,15 @@
 package tests;
 
-import base.DriverFactory;
+import base.BaseTest;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
 import pages.LoginPage;
 
-public class LoginTest {
+public class LoginTest extends BaseTest {
 
-    public static void main(String[] args) {
-
-        WebDriver driver = DriverFactory.initDriver();
-
+    @Test
+    public void validLoginTest() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("Admin", "admin123");
-
-        driver.quit();
     }
 }
