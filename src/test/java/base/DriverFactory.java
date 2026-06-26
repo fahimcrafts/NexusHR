@@ -9,10 +9,14 @@ public class DriverFactory {
     public static WebDriver driver;
 
     public static WebDriver initDriver(){
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-
         ConfigReader configReader = new ConfigReader();
+        String browser = configReader.getBrowser();
+
+        if (browser.equalsIgnoreCase("chrome")) {
+            driver = new ChromeDriver();
+        }
+
+        driver.manage().window().maximize();
         driver.get(configReader.getUrl());
 
         return driver;
