@@ -4,14 +4,21 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utils.ConfigReader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BaseTest {
 
     protected WebDriver driver;
+    protected static Logger logger = LogManager.getLogger(BaseTest.class);
+    private ConfigReader configReader = new ConfigReader();
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
         driver = DriverFactory.initDriver();
+
+        logger.info("Driver initialized successfully");
+
         driver.get(new ConfigReader().getUrl());
     }
 
