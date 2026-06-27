@@ -7,7 +7,7 @@ import pages.LoginPage;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Test(groups = "smoke")
     public void validLoginTest() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("Admin", "admin123");

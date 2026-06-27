@@ -9,13 +9,13 @@ public class BaseTest {
 
     protected WebDriver driver;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         driver = DriverFactory.initDriver();
         driver.get(new ConfigReader().getUrl());
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
         if(driver != null){
             driver.quit();
