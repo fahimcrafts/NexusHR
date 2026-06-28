@@ -16,6 +16,10 @@ public class LoginPage extends BasePage {
     By password = By.name("password");
     By loginBtn = By.cssSelector("button[type='submit']");
 
+    public void loginAsAdmin(){
+        login("Admin", "admin123");
+    }
+
     public void login(String user, String pass){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 

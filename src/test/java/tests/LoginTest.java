@@ -10,7 +10,7 @@ public class LoginTest extends BaseTest {
     @Test(groups = "smoke")
     public void validLoginTest() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("Admin", "admin123");
+        loginPage.loginAsAdmin();
 
         Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"));
     }
