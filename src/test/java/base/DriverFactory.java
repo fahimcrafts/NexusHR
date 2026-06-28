@@ -7,13 +7,20 @@ import utils.ConfigReader;
 public class DriverFactory {
 
     public static WebDriver driver;
+    private static final ConfigReader configReader = new ConfigReader();
 
     public static WebDriver initDriver(){
-        ConfigReader configReader = new ConfigReader();
         String browser = configReader.getBrowser();
 
-        if (browser.equalsIgnoreCase("chrome")) {
-            driver = new ChromeDriver();
+        switch(browser.toLowerCase()) {
+            case "chrome":
+                driver = new ChromeDriver();
+                break;
+
+            default:
+                throw new IllegalArgumentException(
+                        "Unsupported browser: " + browser
+                );
         }
 
         driver.manage().window().maximize();
