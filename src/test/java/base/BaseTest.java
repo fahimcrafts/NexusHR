@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 public class BaseTest {
 
     protected WebDriver driver;
-    protected static Logger logger = LogManager.getLogger(BaseTest.class);
+    protected Logger logger = LogManager.getLogger(this.getClass());
     private ConfigReader configReader = new ConfigReader();
 
     @BeforeMethod(alwaysRun = true)
