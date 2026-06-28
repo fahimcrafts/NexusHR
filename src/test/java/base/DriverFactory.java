@@ -7,7 +7,7 @@ import utils.ConfigReader;
 
 public class DriverFactory {
 
-    public static WebDriver driver;
+    private static WebDriver driver;
     private static final ConfigReader configReader = new ConfigReader();
 
     public static WebDriver initDriver(){
@@ -30,6 +30,10 @@ public class DriverFactory {
 
         driver.manage().window().maximize();
 
+        return driver;
+    }
+
+    public static WebDriver getDriver(){
         return driver;
     }
 }

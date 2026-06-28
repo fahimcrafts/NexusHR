@@ -1,5 +1,7 @@
 package utils;
 
+import org.openqa.selenium.WebDriver;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -23,7 +25,6 @@ public class ConfigReader {
             throw new RuntimeException("Failed to load config.properties", e);
         }
     }
-
 
     public String getBrowser() {
         return properties.getProperty("browser");

@@ -1,5 +1,6 @@
 package steps;
 
+import base.DriverFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -9,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginSteps {
 
-    WebDriver driver = new ChromeDriver();
+    WebDriver driver = DriverFactory.getDriver();
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page() {
