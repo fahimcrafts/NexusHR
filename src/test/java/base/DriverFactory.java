@@ -2,6 +2,7 @@ package base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import utils.ConfigReader;
 
 public class DriverFactory {
@@ -15,6 +16,10 @@ public class DriverFactory {
         switch(browser.toLowerCase()) {
             case "chrome":
                 driver = new ChromeDriver();
+                break;
+
+            case "firefox":
+                driver = new FirefoxDriver();
                 break;
 
             default:
