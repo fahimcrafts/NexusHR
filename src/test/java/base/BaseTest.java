@@ -19,7 +19,7 @@ public class BaseTest {
 
         logger.info("Driver initialized successfully");
 
-        driver.get(new ConfigReader().getUrl());
+        driver.get(configReader.getUrl());
     }
 
     @AfterMethod(alwaysRun = true)

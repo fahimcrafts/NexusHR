@@ -6,17 +6,24 @@ import java.util.Properties;
 
 public class ConfigReader {
 
-    Properties properties;
+    private static Properties properties;
 
     public ConfigReader() {
-        try {
-            FileInputStream fis = new FileInputStream("src/test/resources/config.properties");
-            properties = new Properties();
-            properties.load(fis);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (properties == null) {
+            loadProperties();
         }
     }
+
+    private void loadProperties() {
+        properties = new Properties();
+
+        try (FileInputStream fis = new FileInputStream("src/test/resources/config.properties")) {
+            properties.load(fis);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load config.properties", e);
+        }
+    }
+
 
     public String getBrowser() {
         return properties.getProperty("browser");
