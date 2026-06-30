@@ -7,7 +7,7 @@ public class DashboardPage {
 
     private final WebDriver driver;
 
-    private final By dashboardHeader = By.xpath("//h6[text()='Dashboard']");
+    private final By dashboardHeader = By.xpath("//h6[normalize-space()='Dashboard']");
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
