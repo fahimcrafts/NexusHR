@@ -31,4 +31,17 @@ public class BasePage {
     protected WebElement waitForVisibility(By locator){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
+    protected String getText(By locator){
+        return waitForVisibility(locator).getText();
+    }
+
+    public boolean isDisPlayed(By locator){
+        try{
+            return waitForVisibility(locator).isDisplayed();
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
 }

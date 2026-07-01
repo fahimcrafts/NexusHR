@@ -25,4 +25,8 @@ public class LoginPage extends BasePage {
         type(password, pass);
         click(loginBtn);
     }
+
+    public boolean isLoginButtonVisible(){
+        return isDisPlayed(loginBtn);
+    }
 }
