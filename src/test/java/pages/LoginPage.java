@@ -21,9 +21,7 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String user, String pass){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(username));
+        waitForVisibility(username);
 
         driver.findElement(username).sendKeys(user);
         driver.findElement(password).sendKeys(pass);
