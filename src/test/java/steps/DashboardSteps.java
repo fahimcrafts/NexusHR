@@ -11,6 +11,7 @@ public class DashboardSteps {
 
     @Then("The user should be redirected to the dashboard")
     public void theUserShouldBeRedirectedToTheDashboard(){
+        DashboardPage dashboardPage = new DashboardPage(DriverFactory.getDriver());
         assertTrue(dashboardPage.isDashboardDisplayed(), "Dashboard page was not displayed.");
     }
 }

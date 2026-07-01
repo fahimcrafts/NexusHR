@@ -17,6 +17,6 @@ public class DashboardPage extends BasePage {
     }
 
     public boolean isDashboardDisplayed() {
-        return waitForVisibility(dashboardHeader).isDisplayed();
+        return isDisPlayed(dashboardHeader);
     }
 }
