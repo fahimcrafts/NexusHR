@@ -18,11 +18,13 @@ public class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void click(WebElement element) {
-        element.click();
+    public void click(By locator) {
+        waitForVisibility(locator).click();
     }
 
-    public void type(WebElement element, String text) {
+    protected void type(By locator, String text) {
+        WebElement element = waitForVisibility(locator);
+        element.clear();
         element.sendKeys(text);
     }
 
