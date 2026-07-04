@@ -6,9 +6,7 @@ import pages.DashboardPage;
 
 import static org.testng.Assert.assertTrue;
 
-public class DashboardSteps {
-    private final DashboardPage dashboardPage = new DashboardPage(DriverFactory.getDriver());
-
+public class DashboardSteps{
     @Then("The user should be redirected to the dashboard")
     public void theUserShouldBeRedirectedToTheDashboard(){
         DashboardPage dashboardPage = new DashboardPage(DriverFactory.getDriver());

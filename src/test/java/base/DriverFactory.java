@@ -13,6 +13,11 @@ public class DriverFactory {
     public static WebDriver initDriver(){
         String browser = configReader.getBrowser();
 
+        if(driver != null){
+            driver.quit();
+            driver = null;
+        }
+
         switch(browser.toLowerCase()) {
             case "chrome":
                 driver = new ChromeDriver();
