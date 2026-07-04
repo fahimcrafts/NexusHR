@@ -18,6 +18,6 @@ public class PIMPage extends BasePage {
     }
 
     public boolean isPIMPageDisplayed() {
-        return isDisPlayed(pimHeader);
+        return isDisplayed(pimHeader);
     }
 }

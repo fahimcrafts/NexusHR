@@ -36,7 +36,7 @@ public class BasePage {
         return waitForVisibility(locator).getText();
     }
 
-    public boolean isDisPlayed(By locator){
+    public boolean isDisplayed(By locator){
         try{
             return waitForVisibility(locator).isDisplayed();
         }
