@@ -27,6 +27,6 @@ public class LoginPage extends BasePage {
     }
 
     public boolean isLoginButtonVisible(){
-        return isDisPlayed(loginBtn);
+        return isDisplayed(loginBtn);
     }
 }
