@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class AddEmployeePage extends BasePage {
     private final By addEmployeeButton =
-            By.xpath("//a[text()='Add Employee']");
+            By.xpath("//a[normalize-space()='Add Employee']");
 
     private final By firstNameInput =
             By.name("firstName");
@@ -16,6 +16,9 @@ public class AddEmployeePage extends BasePage {
 
     private final By saveButton =
             By.cssSelector("button[type='submit']");
+
+    private final By personalDetailsHeader =
+            By.xpath("//a[normalize-space()='Personal Details']");
 
     public AddEmployeePage(WebDriver driver) {
         super(driver);
@@ -42,5 +45,9 @@ public class AddEmployeePage extends BasePage {
         enterFirstName(firstName);
         enterLastName(lastName);
         clickSave();
+    }
+
+    public boolean isPersonalDetailsPageDisplayed() {
+        return isDisplayed(personalDetailsHeader);
     }
 }
