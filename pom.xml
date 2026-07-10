@@ -62,9 +62,9 @@
                 <version>3.5.5</version>
 
                 <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
+                    <includes>
+                        <include>**/TestRunner.java</include>
+                    </includes>
                 </configuration>
 
             </plugin>
