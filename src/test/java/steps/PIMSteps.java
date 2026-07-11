@@ -33,10 +33,11 @@ public class PIMSteps {
     public void addNewEmployee() {
         String firstName = DataGenerator.getFirstName();
         String lastName = DataGenerator.getLastName();
+        String employeeId = DataGenerator.getEmployeeId();
 
-        logger.info("Generated Employee: {} {}", firstName, lastName);
+        logger.info("Generated Employee: {} {}, Id: {}", firstName, lastName, employeeId);
 
-        addEmployeePage.addEmployee(firstName, lastName);
+        addEmployeePage.addEmployee(firstName, lastName, employeeId);
     }
 
     @Then("The employee should be added successfully")

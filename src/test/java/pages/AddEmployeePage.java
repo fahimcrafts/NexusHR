@@ -14,6 +14,8 @@ public class AddEmployeePage extends BasePage {
     private final By lastNameInput =
             By.name("lastName");
 
+    private final By employeeIdInput = By.xpath("//label[text()='Employee Id']/../..//input");
+
     private final By saveButton =
             By.cssSelector("button[type='submit']");
 
@@ -36,14 +38,19 @@ public class AddEmployeePage extends BasePage {
         type(lastNameInput, lastName);
     }
 
+    public void enterEmployeeId(String employeeId){
+        type(employeeIdInput, employeeId);
+    }
+
     public void clickSave() {
         click(saveButton);
     }
 
-    public void addEmployee(String firstName, String lastName){
+    public void addEmployee(String firstName, String lastName, String employeeId){
         clickAddEmployee();
         enterFirstName(firstName);
         enterLastName(lastName);
+        enterEmployeeId(employeeId);
         clickSave();
     }
 
