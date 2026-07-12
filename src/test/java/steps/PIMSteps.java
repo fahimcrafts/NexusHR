@@ -57,5 +57,7 @@ public class PIMSteps {
         assertEquals(personalDetailsPage.getFirstName(), firstName, "First name does not match");
 
         assertEquals(personalDetailsPage.getLastName(), lastName, "Last name does not match");
+
+        assertTrue(personalDetailsPage.getEmployeeId().contains(employeeId),"Employee ID does not match");
     }
 }
