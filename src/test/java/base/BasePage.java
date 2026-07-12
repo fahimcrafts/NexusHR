@@ -36,6 +36,10 @@ public class BasePage {
         return waitForVisibility(locator).getText();
     }
 
+    protected String getAttributeValue(By locator){
+        return waitForVisibility(locator).getAttribute("value");
+    }
+
     public boolean isDisplayed(By locator){
         try{
             return waitForVisibility(locator).isDisplayed();

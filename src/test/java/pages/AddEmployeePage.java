@@ -14,7 +14,7 @@ public class AddEmployeePage extends BasePage {
     private final By lastNameInput =
             By.name("lastName");
 
-    private final By employeeIdInput = By.xpath("//label[text()='Employee Id']/../..//input");
+    private final By employeeIdInput = By.xpath("//label[normalize-space()='Employee Id']/../..//input");
 
     private final By saveButton =
             By.cssSelector("button[type='submit']");
