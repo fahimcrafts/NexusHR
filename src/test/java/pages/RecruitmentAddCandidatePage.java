@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class RecruitmentAddCandidatePage extends BasePage {
-    private final By firstNameInput = By.name("firstname");
-    private final By lastNameInput = By.name("lastname");
+    private final By firstNameInput = By.name("firstName");
+    private final By lastNameInput = By.name("lastName");
     private final By emailInput = By.xpath("//label[normalize-space()='Email']/following::input[1]");
 
     private final By saveButton = By.cssSelector("button[type = 'submit']");

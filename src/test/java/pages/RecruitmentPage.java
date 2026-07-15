@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 public class RecruitmentPage extends BasePage{
     private final By recruitmentMenu = By.cssSelector("a[href='/web/index.php/recruitment/viewRecruitmentModule']");
 
-    private final By addButton = By.xpath("//button[normalize-space='Add']");
+    private final By addButton = By.xpath("//button[normalize-space()='Add']");
 
     public RecruitmentPage(WebDriver driver){
         super(driver);

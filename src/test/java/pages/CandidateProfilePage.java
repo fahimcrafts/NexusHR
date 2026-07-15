@@ -7,8 +7,8 @@ import org.openqa.selenium.WebDriver;
 public class CandidateProfilePage extends BasePage{
     private final By candidateProfileHeader = By.xpath("//h6[normalize-space()='Candidate Profile']");
 
-    private final By firstNameInput = By.name("firstname");
-    private final By lastNameInput = By.name("lastname");
+    private final By firstNameInput = By.name("firstName");
+    private final By lastNameInput = By.name("lastName");
     private final By emailInput = By.xpath("//label[normalize-space()='Email']/following::input[1]");
 
     public CandidateProfilePage(WebDriver driver){
@@ -30,6 +30,4 @@ public class CandidateProfilePage extends BasePage{
     public String getEmail() {
         return getAttributeValue(emailInput);
     }
-
-
 }

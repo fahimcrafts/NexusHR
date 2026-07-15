@@ -22,6 +22,6 @@ public class Hooks {
     public void tearDown() {
         logger.info("Closing browser session");
 
-        DriverFactory.getDriver().quit();
+        //DriverFactory.getDriver().quit();
     }
 }
