@@ -11,7 +11,6 @@ public class RecruitmentAddCandidatePage extends BasePage {
 
     private final By saveButton = By.cssSelector("button[type = 'submit']");
 
-
     public RecruitmentAddCandidatePage(WebDriver driver){
         super(driver);
     }
