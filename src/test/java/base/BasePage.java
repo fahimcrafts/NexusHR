@@ -19,7 +19,7 @@ public class BasePage {
     }
 
     public void click(By locator) {
-        waitForVisibility(locator).click();
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
     protected void type(By locator, String text) {
