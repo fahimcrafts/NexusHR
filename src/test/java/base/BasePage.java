@@ -32,6 +32,10 @@ public class BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    protected void waitForInvisibility(By locator) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
     protected String getText(By locator){
         return waitForVisibility(locator).getText();
     }

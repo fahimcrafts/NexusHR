@@ -5,3 +5,4 @@ Scenario: Admin navigates to Leave module
   When I login with valid admin credentials
   And I navigate to Leave module
   Then The Leave page should be displayed
+
