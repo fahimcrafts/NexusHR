@@ -17,6 +17,8 @@ public class LeavePage extends BasePage {
     private final By autocompleteOptions =
             By.cssSelector(".oxd-autocomplete-dropdown div[role='option']");
 
+    private final By autocompleteList = By.cssSelector("[role='listbox']");
+
     public LeavePage(WebDriver driver){
         super(driver);
     }
