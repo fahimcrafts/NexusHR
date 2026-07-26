@@ -18,6 +18,11 @@ public class LeaveSteps {
         leavePage.navigateToLeave();
     }
 
+    @When("I select employee {string}")
+    public void isSelectEmployee(String employeeName){
+        leavePage.selectEmployee(employeeName);
+    }
+
     @Then("The Leave page should be displayed")
     public void verifyLeavePage(){
         assertTrue(leavePage.isLeavePageDisplayed());
