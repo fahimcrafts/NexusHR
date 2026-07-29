@@ -21,9 +21,9 @@ public class LeavePage extends BasePage {
 
     private final By autocompleteList = By.cssSelector("[role='listbox']");
 
-    private By employeeOption(String employeeName){
-        return By.xpath("//div[@role='option'][contains(.,'" + employeeName + "')]");
-    }
+    private final By leaveStatusDropdown = By.cssSelector(".oxd-select-text");
+
+    private final By leaveStatusOptions = By.cssSelector(".oxd-select-option");
 
     public LeavePage(WebDriver driver){
         super(driver);
@@ -57,6 +57,19 @@ public class LeavePage extends BasePage {
 
         if(!getAttributeValue(employeeNameInput).equals(employeeName)){
             throw new IllegalStateException("Failed to select employee: " + employeeName);
+        }
+    }
+
+    public void selectLeaveStatus(String status){
+        click(leaveStatusDropdown);
+
+        waitForVisibility(leaveStatusOptions);
+
+        for(WebElement option: driver.findElements(leaveStatusOptions)){
+            if(option.getText().equals(status)){
+                option.click();
+                break;
+            }
         }
     }
 
