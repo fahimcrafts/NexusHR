@@ -19,8 +19,13 @@ public class LeaveSteps {
     }
 
     @When("I select employee {string}")
-    public void isSelectEmployee(String employeeName){
+    public void selectEmployee(String employeeName){
         leavePage.selectEmployee(employeeName);
+    }
+
+    @When("I select leave status {string}")
+    public void selectLeaveStatus(String status){
+        leavePage.selectLeaveStatus(status);
     }
 
     @Then("The Leave page should be displayed")

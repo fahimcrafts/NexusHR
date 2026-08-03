@@ -25,6 +25,8 @@ public class LeavePage extends BasePage {
 
     private final By leaveStatusOptions = By.cssSelector(".oxd-select-option");
 
+    private final By selectedLeaveStatusChips = By.cssSelector(".oxd-multiselect-chips-selected");
+
     public LeavePage(WebDriver driver){
         super(driver);
     }
@@ -55,21 +57,34 @@ public class LeavePage extends BasePage {
 
         waitForVisibility(employeeNameInput);
 
-        if(!getAttributeValue(employeeNameInput).equals(employeeName)){
+        String actualEmployeeName = getAttributeValue(employeeNameInput).trim().replaceAll("\\s+"," ");
+
+        if(!actualEmployeeName.equals(employeeName)){
             throw new IllegalStateException("Failed to select employee: " + employeeName);
         }
     }
 
-    public void selectLeaveStatus(String status){
+    public void selectLeaveStatus(String status) {
         click(leaveStatusDropdown);
 
         waitForVisibility(leaveStatusOptions);
 
+        boolean statusFound = false;
+
         for(WebElement option: driver.findElements(leaveStatusOptions)){
             if(option.getText().equals(status)){
-                option.click();
+                Actions actions = new Actions(driver);
+                actions.moveToElement(option)
+                        .click()
+                        .perform();
+
+                statusFound = true;
                 break;
             }
+        }
+
+        if(!statusFound){
+            throw new IllegalArgumentException("Leave status not found: " + status);
         }
     }
 
