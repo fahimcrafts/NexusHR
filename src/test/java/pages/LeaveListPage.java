@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class LeavePage extends BasePage {
+public class LeaveListPage extends BasePage {
     private final By leaveMenu = By.cssSelector("a[href='/web/index.php/leave/viewLeaveModule']");
 
     private final By leaveHeader = By.xpath("//h6[normalize-space()='Leave']");
@@ -27,7 +27,7 @@ public class LeavePage extends BasePage {
 
     private final By selectedLeaveStatusChips = By.cssSelector(".oxd-multiselect-chips-selected");
 
-    public LeavePage(WebDriver driver){
+    public LeaveListPage(WebDriver driver){
         super(driver);
     }
 
