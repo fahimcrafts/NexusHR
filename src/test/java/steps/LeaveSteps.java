@@ -51,4 +51,14 @@ public class LeaveSteps {
     public void theAddEntitlementPageShouldBeDisplayed() {
         assertTrue(addEntitlementPage.isAddEntitlementPageDisplayed());
     }
+
+    @When("I select leave type: {string}")
+    public void iSelectLeaveType(String leaveType){
+        addEntitlementPage.selectLeaveType(leaveType);
+    }
+
+    @When("I enter entitlement {string}")
+    public void iEnterEntitlement(String entitlement){
+        addEntitlementPage.enterEntitlement(entitlement);
+    }
 }
