@@ -66,4 +66,9 @@ public class LeaveSteps {
     public void iEnterEntitlement(String entitlement){
         addEntitlementPage.enterEntitlement(entitlement);
     }
+
+    @When("I click save")
+    public void iClickSave(){
+        addEntitlementPage.clickSave();
+    }
 }

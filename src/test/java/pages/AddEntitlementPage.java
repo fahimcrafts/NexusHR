@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.annotations.Test;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +29,8 @@ public class AddEntitlementPage extends BasePage {
     private final By leavePeriodDropdown = By.xpath("//label[normalize-space()='Leave Period']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
 
     private final By leavePeriodOptions = By.cssSelector(".oxd-select-option[role='option']");
+
+    private final By saveButton = By.cssSelector("button[type='submit']");
 
     public AddEntitlementPage(WebDriver driver){
         super(driver);
@@ -112,5 +115,9 @@ public class AddEntitlementPage extends BasePage {
 
     public void enterEntitlement(String entitlement){
         type(entitlementInput, entitlement);
+    }
+
+    public void clickSave(){
+        click(saveButton);
     }
 }
