@@ -90,6 +90,10 @@ public class AddEntitlementPage extends BasePage {
         boolean periodFound = false;
 
         for(WebElement option : driver.findElements(leavePeriodOptions)){
+
+            //Debugging statement
+            System.out.println("DEBUG Leave Period option =>> " + option.getText());
+
             if(option.getText().equals(leavePeriod)){
                 Actions actions = new Actions(driver);
                 actions.moveToElement(option)
