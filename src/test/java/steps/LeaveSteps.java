@@ -28,7 +28,7 @@ public class LeaveSteps {
 
     @When("I select employee {string}")
     public void selectEmployee(String employeeName){
-        leaveListPage.selectEmployee(employeeName);
+        addEntitlementPage.selectEmployee(employeeName);
     }
 
     @When("I select leave status {string}")
@@ -55,6 +55,11 @@ public class LeaveSteps {
     @When("I select leave type: {string}")
     public void iSelectLeaveType(String leaveType){
         addEntitlementPage.selectLeaveType(leaveType);
+    }
+
+    @When("I select leave period: {string}")
+    public void iSelectLeavePeriod(String leavePeriod){
+        addEntitlementPage.selectLeavePeriod(leavePeriod);
     }
 
     @When("I enter entitlement {string}")

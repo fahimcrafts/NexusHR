@@ -1,11 +1,12 @@
 package pages;
 
 import base.BasePage;
-import io.cucumber.java.en_old.Ac;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
+import java.util.List;
 
 public class AddEntitlementPage extends BasePage {
     private final By addEntitlementTitle = By.xpath("//p[normalize-space()='Add Leave Entitlement']");
@@ -21,6 +22,10 @@ public class AddEntitlementPage extends BasePage {
     private final By leaveTypeDropdown = By.cssSelector(".oxd-select-text");
 
     private final By leaveTypeOptions = By.cssSelector(".oxd-select-option[role='option']");
+
+    private final By leavePeriodDropdown = By.xpath("//label[normalize-space()='Leave Period']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
+
+    private final By leavePeriodOptions = By.cssSelector(".oxd-select-option[role='option']");
 
     public AddEntitlementPage(WebDriver driver){
         super(driver);
@@ -76,6 +81,28 @@ public class AddEntitlementPage extends BasePage {
 
         if(!typeFound){
             throw new IllegalArgumentException("Leave type not found: " + leaveType);
+        }
+    }
+
+    public void selectLeavePeriod(String leavePeriod){
+        click(leavePeriodDropdown);
+
+        boolean periodFound = false;
+
+        for(WebElement option : driver.findElements(leavePeriodOptions)){
+            if(option.getText().equals(leavePeriod)){
+                Actions actions = new Actions(driver);
+                actions.moveToElement(option)
+                        .click()
+                        .perform();
+
+                periodFound = true;
+                break;
+            }
+        }
+
+        if(!periodFound){
+            throw new IllegalArgumentException("Leave period not found: " + leavePeriod);
         }
     }
 
