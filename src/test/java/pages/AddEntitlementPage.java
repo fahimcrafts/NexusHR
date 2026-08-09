@@ -5,8 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
+import java.util.Optional;
 
 public class AddEntitlementPage extends BasePage {
     private final By addEntitlementTitle = By.xpath("//p[normalize-space()='Add Leave Entitlement']");
@@ -38,15 +40,17 @@ public class AddEntitlementPage extends BasePage {
     public void selectEmployee(String employeeName){
         type(employeeNameInput, employeeName);
 
-        waitForInvisibility(searchingIndicator);
-        waitForVisibility(autocompleteList);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(autocompleteOptions, employeeName));
 
         for(WebElement option : driver.findElements(autocompleteOptions)){
             if(option.getText().equals(employeeName)){
-                Actions actions = new Actions(driver);
-                actions.moveToElement(option)
-                        .click()
-                        .perform();
+                option.click();
+
+                wait.until(driver -> {
+                    String actual = getAttributeValue(employeeNameInput);
+                    return actual != null
+                            && actual.trim().replaceAll("\\s+", " ").equals(employeeName);
+                });
                 break;
             }
         }
@@ -90,10 +94,6 @@ public class AddEntitlementPage extends BasePage {
         boolean periodFound = false;
 
         for(WebElement option : driver.findElements(leavePeriodOptions)){
-
-            //Debugging statement
-            System.out.println("DEBUG Leave Period option =>> " + option.getText());
-
             if(option.getText().equals(leavePeriod)){
                 Actions actions = new Actions(driver);
                 actions.moveToElement(option)
