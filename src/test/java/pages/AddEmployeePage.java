@@ -54,7 +54,7 @@ public class AddEmployeePage extends BasePage {
         clickSave();
     }
 
-    public boolean isPersonalDetailsPageDisplayed() {
+    public boolean isPersonalDetailsPageDisplayed(String expectedEntitlement) {
         return isDisplayed(personalDetailsHeader);
     }
 }

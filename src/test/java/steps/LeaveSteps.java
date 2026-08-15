@@ -71,4 +71,19 @@ public class LeaveSteps {
     public void iClickSave(){
         addEntitlementPage.clickSave();
     }
+
+    @Then("The Update Entitlement pop up should be displayed")
+    public void theUpdateEntitlementPopUpShouldBeDisplayed() {
+        addEntitlementPage.updatingEntitlementPopUpIsDisplayed();
+    }
+
+    @And("I confirm the entitlement update")
+    public void iConfirmTheEntitlementUpdate() {
+        addEntitlementPage.clickConfirmEntitlementButton();
+    }
+
+    @And("The entitlement should be {string}")
+    public void theEntitlementShouldBe(String expectedEntitlement) {
+       assertTrue(addEntitlementPage.isEntitlementDisplayed(expectedEntitlement));
+    }
 }

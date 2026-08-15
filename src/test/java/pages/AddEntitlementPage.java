@@ -32,6 +32,10 @@ public class AddEntitlementPage extends BasePage {
 
     private final By saveButton = By.cssSelector("button[type='submit']");
 
+    private final By updatingEntitlementPopUp = By.className("oxd-dialog-sheet");
+
+    private final By confirmEntitlementButton = By.xpath("//button[normalize-space()='Confirm']");
+
     public AddEntitlementPage(WebDriver driver){
         super(driver);
     }
@@ -119,5 +123,22 @@ public class AddEntitlementPage extends BasePage {
 
     public void clickSave(){
         click(saveButton);
+    }
+
+    public boolean updatingEntitlementPopUpIsDisplayed(){
+        return isDisplayed(updatingEntitlementPopUp);
+    }
+
+    public void clickConfirmEntitlementButton(){
+        waitForVisibility(confirmEntitlementButton);
+        click(confirmEntitlementButton);
+    }
+
+    public boolean isEntitlementDisplayed(String expectedEntitlement) {
+        By entitlementResult = By.xpath(
+                "//div[@role='row'][.//div[normalize-space()='CAN - FMLA']]" +
+                "//div[@role='cell'][.//div[normalize-space()='"
+                + expectedEntitlement + "']]");
+        return isDisplayed(entitlementResult);
     }
 }
