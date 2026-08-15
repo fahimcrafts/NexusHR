@@ -82,8 +82,9 @@ public class LeaveSteps {
         addEntitlementPage.clickConfirmEntitlementButton();
     }
 
-    @And("The entitlement should be {string}")
-    public void theEntitlementShouldBe(String expectedEntitlement) {
-       assertTrue(addEntitlementPage.isEntitlementDisplayed(expectedEntitlement));
+    @And("The entitlement for leave type {string} should be {string}"
+    )
+    public void theEntitlementShouldBe(String leaveType, String expectedEntitlement) {
+       assertTrue(addEntitlementPage.isEntitlementDisplayed(leaveType, expectedEntitlement));
     }
 }

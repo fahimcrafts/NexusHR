@@ -134,11 +134,11 @@ public class AddEntitlementPage extends BasePage {
         click(confirmEntitlementButton);
     }
 
-    public boolean isEntitlementDisplayed(String expectedEntitlement) {
+    public boolean isEntitlementDisplayed(String leaveType, String expectedEntitlement) {
         By entitlementResult = By.xpath(
-                "//div[@role='row'][.//div[normalize-space()='CAN - FMLA']]" +
-                "//div[@role='cell'][.//div[normalize-space()='"
-                + expectedEntitlement + "']]");
+                "//div[@role='row'][.//div[normalize-space()='" +
+                    leaveType + "']]" +
+                "//div[@role='cell'][.//div[normalize-space()='" +     expectedEntitlement + "']]");
         return isDisplayed(entitlementResult);
     }
 }
