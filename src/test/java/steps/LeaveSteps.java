@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import pages.AddEntitlementPage;
 import pages.LeaveListPage;
 import pages.LeaveModulePage;
+import pages.AssignLeavePage;
 import utils.LoggerUtil;
 import org.apache.logging.log4j.Logger;
 import static org.testng.Assert.assertTrue;
@@ -20,6 +21,8 @@ public class LeaveSteps {
     private LeaveModulePage leaveModulePage = new LeaveModulePage(DriverFactory.getDriver());
 
     private AddEntitlementPage addEntitlementPage = new AddEntitlementPage(DriverFactory.getDriver());
+
+    private AssignLeavePage assignLeavePage = new AssignLeavePage(DriverFactory.getDriver());
 
     @When("I navigate to Leave module")
     public void navigateToLeaveModule(){
@@ -55,6 +58,11 @@ public class LeaveSteps {
     @When("I select leave type: {string}")
     public void iSelectLeaveType(String leaveType){
         addEntitlementPage.selectLeaveType(leaveType);
+    }
+
+    @When("I select Assign Leave leave type: {string}")
+    public void iSelectAssignLeaveLeaveType(String leaveType){
+        assignLeavePage.selectLeaveType(leaveType);
     }
 
     @When("I select leave period: {string}")
