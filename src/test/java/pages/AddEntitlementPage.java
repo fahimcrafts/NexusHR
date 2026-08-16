@@ -16,10 +16,6 @@ public class AddEntitlementPage extends BasePage {
     private final By employeeNameInput = By.xpath("//label[normalize-space()='Employee Name']/ancestor::div[contains(@class,'oxd-input')]//input");
     private final By entitlementInput = By.xpath("//label[normalize-space()='Entitlement']/ancestor::div[contains(@class,'oxd-input')]//input");
 
-    private final By searchingIndicator = By.xpath("//div[text()='Searching...' or text()='Searching...']");
-
-    private final By autocompleteList = By.cssSelector("[role='listbox']");
-
     private final By autocompleteOptions = By.cssSelector(".oxd-autocomplete-dropdown div[role='option']");
 
     private final By leaveTypeDropdown = By.cssSelector(".oxd-select-text");
