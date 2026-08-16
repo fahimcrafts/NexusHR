@@ -50,6 +50,12 @@ public class LeaveSteps {
         leaveModulePage.openAddEntitlements();
     }
 
+    @When("I navigate to Assign Leave")
+    public void iNavigateToAssignLeave() {
+        leaveModulePage.navigateToLeave();
+        leaveModulePage.openAssignLeaveMenu();
+    }
+
     @Then("The Add Entitlement page should be displayed")
     public void theAddEntitlementPageShouldBeDisplayed() {
         assertTrue(addEntitlementPage.isAddEntitlementPageDisplayed());

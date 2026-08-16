@@ -8,7 +8,7 @@ Feature: Leave Module Navigation
 
     #And I select employee "AutoFN_467c5 AutoLN_95adc"
 
-  @debug
+
   Scenario: Admin enters leave entitlement details
     Given I am on the login page
     When I login with valid admin credentials
@@ -21,4 +21,11 @@ Feature: Leave Module Navigation
     Then The Update Entitlement pop up should be displayed
     And I confirm the entitlement update
     And The entitlement for leave type "CAN - FMLA" should be "2.25"
+
+  @debug
+  Scenario: Admin selects leave type on Assign Leave
+    Given I am on the login page
+    When I login with valid admin credentials
+    And I navigate to Assign Leave
+    And I select Assign Leave leave type: "CAN - FMLA"
 

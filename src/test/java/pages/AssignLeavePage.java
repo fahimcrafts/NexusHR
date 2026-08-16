@@ -60,9 +60,11 @@ public class AssignLeavePage extends BasePage{
 
         waitForVisibility(leaveTypeOptions);
 
+        List<WebElement> options = driver.findElements(leaveTypeOptions);
+
         boolean typeFound = false;
 
-        for(WebElement option : driver.findElements(leaveTypeOptions)){
+        for(WebElement option : options){
             if(option.getText().equals(leaveType)){
                 Actions actions = new Actions(driver);
                 actions.moveToElement(option)
