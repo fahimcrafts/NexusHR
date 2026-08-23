@@ -96,16 +96,25 @@ public class LeaveSteps {
         addEntitlementPage.updatingEntitlementPopUpIsDisplayed();
     }
 
-    @And("I confirm the entitlement update")
+    @When("I confirm the entitlement update")
     public void iConfirmTheEntitlementUpdate() {
         addEntitlementPage.clickConfirmEntitlementButton();
     }
 
-    @And("The entitlement for leave type {string} should be {string}"
+    @When("The entitlement for leave type {string} should be {string}"
     )
     public void theEntitlementShouldBe(String leaveType, String expectedEntitlement) {
        assertTrue(addEntitlementPage.isEntitlementDisplayed(leaveType, expectedEntitlement));
     }
 
 
+    @When("I enter Assign Leave from date {string}")
+    public void iEnterAssignLeaveFromDate(String date) {
+        assignLeavePage.enterFromDate(date);
+    }
+
+    @Then("The Assign Leave from date should be {string}")
+    public void theAssignLeaveFromDateShouldBe(String expectedDate) {
+        assertTrue(assignLeavePage.isFromDateDisplayed(expectedDate));
+    }
 }

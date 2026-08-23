@@ -86,4 +86,13 @@ public class AssignLeavePage extends BasePage{
             throw new IllegalArgumentException("Leave type not found: " + leaveType);
         }
     }
+
+    public void enterFromDate(String date){
+        type(fromDate, date);
+    }
+
+    public boolean isFromDateDisplayed(String expectedDate){
+        String actualDate = getAttributeValue(fromDate);
+        return actualDate != null && actualDate.equals(expectedDate);
+    }
 }

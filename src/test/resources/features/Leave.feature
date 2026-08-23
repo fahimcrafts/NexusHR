@@ -29,4 +29,6 @@ Feature: Leave Module Navigation
     And I navigate to Assign Leave
     And I select Assign Leave employee "AutoFN_98379 AutoLN_108bb"
     #And I select Assign Leave leave type: "CAN - FMLA"
+    And I enter Assign Leave from date "2026-08-24"
+    Then The Assign Leave from date should be "2026-08-24"
 
