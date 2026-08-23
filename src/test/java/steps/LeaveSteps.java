@@ -34,6 +34,11 @@ public class LeaveSteps {
         addEntitlementPage.selectEmployee(employeeName);
     }
 
+    @When("I select Assign Leave employee {string}")
+    public void iSelectAssignLeaveEmployee(String employeeName){
+        assignLeavePage.selectEmployee(employeeName);
+    }
+
     @When("I select leave status {string}")
     public void selectLeaveStatus(String status){
         leaveListPage.selectLeaveStatus(status);
@@ -101,4 +106,6 @@ public class LeaveSteps {
     public void theEntitlementShouldBe(String leaveType, String expectedEntitlement) {
        assertTrue(addEntitlementPage.isEntitlementDisplayed(leaveType, expectedEntitlement));
     }
+
+
 }

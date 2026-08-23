@@ -6,14 +6,14 @@ Feature: Leave Module Navigation
     And I navigate to Leave module
     Then The Leave page should be displayed
 
-    #And I select employee "AutoFN_467c5 AutoLN_95adc"
+    #And I select employee "AutoFN_98379 AutoLN_108bb"
 
 
   Scenario: Admin enters leave entitlement details
     Given I am on the login page
     When I login with valid admin credentials
     And I navigate to Add Entitlements
-    And I select employee "AutoFN_467c5 AutoLN_95adc"
+    And I select employee "AutoFN_98379 AutoLN_108bb"
     And I select leave type: "CAN - FMLA"
     And I select leave period: "2026-01-01 - 2026-31-12"
     And I enter entitlement "2.25"
@@ -27,5 +27,6 @@ Feature: Leave Module Navigation
     Given I am on the login page
     When I login with valid admin credentials
     And I navigate to Assign Leave
-    And I select Assign Leave leave type: "CAN - FMLA"
+    And I select Assign Leave employee "AutoFN_98379 AutoLN_108bb"
+    #And I select Assign Leave leave type: "CAN - FMLA"
 
