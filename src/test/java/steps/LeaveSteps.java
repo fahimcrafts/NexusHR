@@ -117,4 +117,14 @@ public class LeaveSteps {
     public void theAssignLeaveFromDateShouldBe(String expectedDate) {
         assertTrue(assignLeavePage.isFromDateDisplayed(expectedDate));
     }
+
+    @And("I enter Assign Leave to date {string}")
+    public void iEnterAssignLeaveToDate(String date) {
+        assignLeavePage.enterToDate(date);
+    }
+
+    @Then("The Assign Leave to date should be {string}")
+    public void theAssignLeaveToDateShouldBe(String date) {
+        assertTrue(assignLeavePage.isToDateDisplayed(date));
+    }
 }

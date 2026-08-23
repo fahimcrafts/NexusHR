@@ -2,6 +2,7 @@ package pages;
 
 import base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -93,6 +94,18 @@ public class AssignLeavePage extends BasePage{
 
     public boolean isFromDateDisplayed(String expectedDate){
         String actualDate = getAttributeValue(fromDate);
+        return actualDate != null && actualDate.equals(expectedDate);
+    }
+
+    public void enterToDate(String date){
+        WebElement elem = waitForVisibility(toDate);
+        elem.click();
+        elem.sendKeys(Keys.CONTROL, "a");
+        elem.sendKeys(date);
+    }
+
+    public boolean isToDateDisplayed(String expectedDate){
+        String actualDate = getAttributeValue(toDate);
         return actualDate != null && actualDate.equals(expectedDate);
     }
 }
