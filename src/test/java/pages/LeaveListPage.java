@@ -27,6 +27,8 @@ public class LeaveListPage extends BasePage {
 
     private final By selectedLeaveStatusChips = By.cssSelector(".oxd-multiselect-chips-selected");
 
+    private final By searchButton = By.cssSelector("button[type='submit']");
+
     public LeaveListPage(WebDriver driver){
         super(driver);
     }
@@ -87,5 +89,24 @@ public class LeaveListPage extends BasePage {
             throw new IllegalArgumentException("Leave status not found: " + status);
         }
     }
+
+    public void clickSearch(){
+        click(searchButton);
+    }
+
+    public boolean isLeaveRecordDisplayed(String employeeName, String leaveType,
+                                          String fromDate, String toDate, String status) {
+        By leaveRecord = By.xpath(
+                "//div[@role='row']" +
+                        "[.//div[normalize-space()='" + employeeName + "']]" +
+                        "[.//div[normalize-space()='" + leaveType + "']]" +
+                        "[.//div[normalize-space()='" + fromDate + "']]" +
+                        "[.//div[normalize-space()='" + toDate + "']]" +
+                        "[.//div[contains(normalize-space(),'" + status + "')]]"
+        );
+
+        return isDisplayed(leaveRecord);
+    }
+
 
 }

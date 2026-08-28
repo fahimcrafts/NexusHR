@@ -29,8 +29,13 @@ public class LeaveSteps {
         leaveListPage.navigateToLeave();
     }
 
+    @When("I select in Leave List employee {string}")
+    public void selectLeaveListEmployee(String employeeName){
+        leaveListPage.selectEmployee(employeeName);
+    }
+
     @When("I select employee {string}")
-    public void selectEmployee(String employeeName){
+    public void selectAddEntitlementEmployee(String employeeName){
         addEntitlementPage.selectEmployee(employeeName);
     }
 
@@ -118,7 +123,7 @@ public class LeaveSteps {
         assertTrue(assignLeavePage.isFromDateDisplayed(expectedDate));
     }
 
-    @And("I enter Assign Leave to date {string}")
+    @When("I enter Assign Leave to date {string}")
     public void iEnterAssignLeaveToDate(String date) {
         assignLeavePage.enterToDate(date);
     }
@@ -126,5 +131,20 @@ public class LeaveSteps {
     @Then("The Assign Leave to date should be {string}")
     public void theAssignLeaveToDateShouldBe(String date) {
         assertTrue(assignLeavePage.isToDateDisplayed(date));
+    }
+
+    @When("I click in Assign Leave assign button")
+    public void iClickAssignButton() {
+        assignLeavePage.clickAssign();
+    }
+
+    @When("I click in Leave List search button")
+    public void iClickSearchButton() {
+        leaveListPage.clickSearch();
+    }
+
+    @Then("The leave record should show employee {string}, leave type {string}, from {string}, to {string}, and status {string}")
+    public void theLeaveRecordShouldBeDisplayed(String employeeName, String leaveType, String fromDate, String toDate, String status){
+        assertTrue(leaveListPage.isLeaveRecordDisplayed(employeeName, leaveType, fromDate, toDate, status));
     }
 }

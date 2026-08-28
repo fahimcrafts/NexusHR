@@ -108,4 +108,8 @@ public class AssignLeavePage extends BasePage{
         String actualDate = getAttributeValue(toDate);
         return actualDate != null && actualDate.equals(expectedDate);
     }
+
+    public void clickAssign(){
+        click(assignButton);
+    }
 }
