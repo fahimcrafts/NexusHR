@@ -1,15 +1,23 @@
 package steps;
 
 import base.DriverFactory;
+
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+
+import pages.AddEmployeePage;
 import pages.AddEntitlementPage;
+import pages.AssignLeavePage;
 import pages.LeaveListPage;
 import pages.LeaveModulePage;
-import pages.AssignLeavePage;
+import pages.PersonalDetailsPage;
+import pages.PIMPage;
+
 import utils.LoggerUtil;
+import utils.DataGenerator;
+
 import org.apache.logging.log4j.Logger;
 import static org.testng.Assert.assertTrue;
 
@@ -23,6 +31,30 @@ public class LeaveSteps {
     private AddEntitlementPage addEntitlementPage = new AddEntitlementPage(DriverFactory.getDriver());
 
     private AssignLeavePage assignLeavePage = new AssignLeavePage(DriverFactory.getDriver());
+
+    private PIMPage pimPage = new PIMPage(DriverFactory.getDriver());
+
+    private AddEmployeePage addEmployeePage = new AddEmployeePage(DriverFactory.getDriver());
+
+    private PersonalDetailsPage personalDetailsPage = new PersonalDetailsPage(DriverFactory.getDriver());
+
+    private String leaveEmployeeName;
+
+    @When("I create a new employee for the leave workflow")
+    public void createEmployeeForLeaveWorkflow(){
+        String firstName = DataGenerator.getFirstName();
+        String lastName = DataGenerator.getLastName();
+        String employeeId = DataGenerator.getEmployeeId();
+
+        leaveEmployeeName = firstName + " " + lastName;
+
+        logger.info("Generated Leave employee: {} {} | ID: {}", firstName, lastName, employeeId);
+
+        pimPage.navigateToPIM();
+        addEmployeePage.addEmployee(firstName, lastName, employeeId);
+
+        assertTrue(addEmployeePage.isPersonalDetailsPageDisplayed(), "Employee was not created for Leave workflow");
+    }
 
     @When("I navigate to Leave module")
     public void navigateToLeaveModule(){
@@ -146,5 +178,35 @@ public class LeaveSteps {
     @Then("The leave record should show employee {string}, leave type {string}, from {string}, to {string}, and status {string}")
     public void theLeaveRecordShouldBeDisplayed(String employeeName, String leaveType, String fromDate, String toDate, String status){
         assertTrue(leaveListPage.isLeaveRecordDisplayed(employeeName, leaveType, fromDate, toDate, status));
+    }
+
+    @When("I select employee for the leave workflow")
+    public void iSelectEmployeeForTheLeaveWorkflow() {
+       addEntitlementPage.selectEmployee(leaveEmployeeName);
+    }
+
+    @When("I select Assign Leave employee for the leave workflow")
+    public void iSelectAssignLeaveEmployeeForTheLeaveWorkflow() {
+        assignLeavePage.selectEmployee(leaveEmployeeName);
+    }
+
+    @When("I select in Leave List employee for the leave workflow")
+    public void iSelectInLeaveListEmployeeForTheLeaveWorkflow() {
+        leaveListPage.selectEmployee(leaveEmployeeName);
+    }
+
+    @Then("The leave record should show employee for the leave workflow, leave type {string}, from {string}, to {string}, and status {string}")
+    public void theLeaveRecordShouldShowEmployeeForTheLeaveWorkflowLeaveTypeFromToAndStatus(
+            String leaveType, String fromDate, String toDate, String status) {
+        assertTrue(
+                leaveListPage.isLeaveRecordDisplayed(
+                        leaveEmployeeName,
+                        leaveType,
+                        fromDate,
+                        toDate,
+                        status
+                ),
+                "Leave record was not found for employee: " + leaveEmployeeName
+        );
     }
 }
