@@ -63,7 +63,7 @@
 
                 <configuration>
                     <includes>
-                        <include>**/TestRunner.java</include>
+                        <include>**/SuiteRunner.java</include>
                     </includes>
                 </configuration>
 
