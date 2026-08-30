@@ -27,6 +27,8 @@ public class AssignLeavePage extends BasePage{
 
     private final By assignButton = By.cssSelector("button[type='submit']");
 
+    private final By successToast = By.cssSelector("p.oxd-toast-content-text");
+
     public AssignLeavePage(WebDriver driver){
         super(driver);
     }
@@ -111,5 +113,6 @@ public class AssignLeavePage extends BasePage{
 
     public void clickAssign(){
         click(assignButton);
+        waitForVisibility(successToast);
     }
 }
