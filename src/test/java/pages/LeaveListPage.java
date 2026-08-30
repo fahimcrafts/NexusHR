@@ -1,10 +1,14 @@
 package pages;
 
 import base.BasePage;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class LeaveListPage extends BasePage {
     private final By leaveMenu = By.cssSelector("a[href='/web/index.php/leave/viewLeaveModule']");
@@ -94,19 +98,21 @@ public class LeaveListPage extends BasePage {
         click(searchButton);
     }
 
-    public boolean isLeaveRecordDisplayed(String employeeName, String leaveType,
-                                          String fromDate, String toDate, String status) {
-        By leaveRecord = By.xpath(
-                "//div[@role='row']" +
-                        "[.//div[normalize-space()='" + employeeName + "']]" +
-                        "[.//div[normalize-space()='" + leaveType + "']]" +
-                        "[.//div[normalize-space()='" + fromDate + "']]" +
-                        "[.//div[normalize-space()='" + toDate + "']]" +
-                        "[.//div[contains(normalize-space(),'" + status + "')]]"
+    public boolean isLeaveRecordDisplayed(String employeeName, String leaveType, String fromDate, String toDate, String status) {
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter uiFormatter = DateTimeFormatter.ofPattern("yyyy-dd-MM");
+
+        String expectedDate = LocalDate.parse(fromDate, inputFormatter).format(uiFormatter) +
+                " to " +
+                LocalDate.parse(toDate, inputFormatter).format(uiFormatter);
+
+        By leaveRecord = By.xpath("//div[@role='row']" +
+                "[.//div[normalize-space()='" + employeeName + "']]" +
+                "[.//div[normalize-space()='" + leaveType + "']]" +
+                "[.//div[normalize-space()='" + expectedDate + "']]" +
+                "[.//div[contains(normalize-space(),'" + status + "')]]"
         );
 
         return isDisplayed(leaveRecord);
     }
-
-
 }
