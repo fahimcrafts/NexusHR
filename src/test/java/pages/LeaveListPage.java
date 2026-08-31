@@ -25,7 +25,7 @@ public class LeaveListPage extends BasePage {
 
     private final By autocompleteList = By.cssSelector("[role='listbox']");
 
-    private final By leaveStatusDropdown = By.cssSelector(".oxd-select-text");
+    private final By leaveStatusDropdown = By.xpath("//label[normalize-space()='Show Leave with Status']/following::div[contains(@class,'oxd-select-text')][1]");
 
     private final By leaveStatusOptions = By.cssSelector(".oxd-select-option");
 
@@ -96,7 +96,6 @@ public class LeaveListPage extends BasePage {
 
     public void clickSearch(){
         click(searchButton);
-        waitForVisibility(searchingIndicator);
     }
 
     public boolean isLeaveRecordDisplayed(String employeeName, String leaveType, String fromDate, String toDate, String status) {
