@@ -2,8 +2,6 @@ package steps;
 
 import base.DriverFactory;
 
-import io.cucumber.java.PendingException;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 
@@ -36,8 +34,6 @@ public class LeaveSteps {
 
     private AddEmployeePage addEmployeePage = new AddEmployeePage(DriverFactory.getDriver());
 
-    private PersonalDetailsPage personalDetailsPage = new PersonalDetailsPage(DriverFactory.getDriver());
-
     private String leaveEmployeeName;
 
     @When("I create a new employee for the leave workflow")
@@ -59,21 +55,6 @@ public class LeaveSteps {
     @When("I navigate to Leave module")
     public void navigateToLeaveModule(){
         leaveListPage.navigateToLeave();
-    }
-
-    @When("I select in Leave List employee {string}")
-    public void selectLeaveListEmployee(String employeeName){
-        leaveListPage.selectEmployee(employeeName);
-    }
-
-    @When("I select employee {string}")
-    public void selectAddEntitlementEmployee(String employeeName){
-        addEntitlementPage.selectEmployee(employeeName);
-    }
-
-    @When("I select Assign Leave employee {string}")
-    public void iSelectAssignLeaveEmployee(String employeeName){
-        assignLeavePage.selectEmployee(employeeName);
     }
 
     @When("I select leave status {string}")
@@ -175,10 +156,6 @@ public class LeaveSteps {
         leaveListPage.clickSearch();
     }
 
-    @Then("The leave record should show employee {string}, leave type {string}, from {string}, to {string}, and status {string}")
-    public void theLeaveRecordShouldBeDisplayed(String employeeName, String leaveType, String fromDate, String toDate, String status){
-        assertTrue(leaveListPage.isLeaveRecordDisplayed(employeeName, leaveType, fromDate, toDate, status));
-    }
 
     @When("I select employee for the leave workflow")
     public void iSelectEmployeeForTheLeaveWorkflow() {

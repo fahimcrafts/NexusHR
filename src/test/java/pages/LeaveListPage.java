@@ -96,11 +96,12 @@ public class LeaveListPage extends BasePage {
 
     public void clickSearch(){
         click(searchButton);
+        waitForVisibility(searchingIndicator);
     }
 
     public boolean isLeaveRecordDisplayed(String employeeName, String leaveType, String fromDate, String toDate, String status) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter uiFormatter = DateTimeFormatter.ofPattern("yyyy-dd-MM");
+        DateTimeFormatter uiFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         String expectedDate = LocalDate.parse(fromDate, inputFormatter).format(uiFormatter) +
                 " to " +
@@ -113,6 +114,11 @@ public class LeaveListPage extends BasePage {
                 "[.//div[contains(normalize-space(),'" + status + "')]]"
         );
 
+        System.out.println("Leave page URL: " + driver.getCurrentUrl());
+        System.out.println("Leave page text:");
+        System.out.println(driver.findElement(By.tagName("body")).getText());
+
         return isDisplayed(leaveRecord);
+
     }
 }

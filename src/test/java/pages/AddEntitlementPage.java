@@ -6,10 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.annotations.Test;
-
 import java.util.List;
-import java.util.Optional;
 
 public class AddEntitlementPage extends BasePage {
     private final By addEntitlementTitle = By.xpath("//p[normalize-space()='Add Leave Entitlement']");
@@ -94,14 +91,16 @@ public class AddEntitlementPage extends BasePage {
     public void selectLeavePeriod(String leavePeriod){
         click(leavePeriodDropdown);
 
+        waitForVisibility(leavePeriodOptions);
+
         boolean periodFound = false;
 
-        for(WebElement option : driver.findElements(leavePeriodOptions)){
-            if(option.getText().equals(leavePeriod)){
-                Actions actions = new Actions(driver);
-                actions.moveToElement(option)
-                        .click()
-                        .perform();
+        for (WebElement option : driver.findElements(leavePeriodOptions)) {
+            String actualText = option.getText().trim();
+
+            if(actualText.equals(leavePeriod.trim())){
+                wait.until(ExpectedConditions.elementToBeClickable(option));
+                option.click();
 
                 periodFound = true;
                 break;
@@ -109,7 +108,9 @@ public class AddEntitlementPage extends BasePage {
         }
 
         if(!periodFound){
-            throw new IllegalArgumentException("Leave period not found: " + leavePeriod);
+            throw new IllegalArgumentException(
+                    "Leave period not found: " + leavePeriod
+            );
         }
     }
 
