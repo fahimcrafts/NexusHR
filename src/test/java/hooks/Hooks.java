@@ -14,6 +14,9 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import utils.LoggerUtil;
 import org.apache.logging.log4j.Logger;
+import java.util.Base64;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
 
@@ -48,7 +51,15 @@ public class Hooks {
     @After
     public void tearDown(Scenario scenario) {
         if(scenario.isFailed()){
-            etest.fail("Scenario failed");
+            byte[] screenshot = ((TakesScreenshot) DriverFactory.getDriver())
+                    .getScreenshotAs(OutputType.BYTES);
+
+            scenario.attach(screenshot, "image/png", "Failure Screenshot");
+            etest.fail("Scenario failed")
+                    .addScreenCaptureFromBase64String(
+                            Base64.getEncoder().encodeToString(screenshot),
+                            "Failure Screenshot"
+                    );
         }
         else {
             etest.pass("Scenario passed");
