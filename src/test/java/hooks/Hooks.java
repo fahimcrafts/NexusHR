@@ -1,27 +1,47 @@
 package hooks;
 
 import base.DriverFactory;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+
 import utils.LoggerUtil;
 import org.apache.logging.log4j.Logger;
 
 public class Hooks {
 
     private static final Logger logger = LoggerUtil.getLogger(Hooks.class);
+    private static final ExtentReports extent = new ExtentReports();
+    private static ExtentTest etest;
 
     @Before
-    public void setUp() {
+    public void setUp(Scenario scenario) {
         DriverFactory.initDriver();
         DriverFactory.getDriver().get("https://opensource-demo.orangehrmlive.com/");
 
+        etest = extent.createTest(scenario.getName());
+
+
         logger.info("Browser launched and application opened");
+        logger.info("Extent test created for scenario: {}", scenario.getName());
     }
 
     @After
-    public void tearDown() {
+    public void tearDown(Scenario scenario) {
+        if(scenario.isFailed()){
+            etest.fail("Scenario failed");
+        }
+        else {
+            etest.pass("Scenario passed");
+        }
+
         logger.info("Closing browser session");
 
        DriverFactory.getDriver().quit();
+       extent.flush();
     }
 }
