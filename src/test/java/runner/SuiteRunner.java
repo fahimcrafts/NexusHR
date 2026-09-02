@@ -8,7 +8,8 @@ import io.cucumber.testng.CucumberOptions;
         glue = {"steps", "hooks"},
         plugin = {
                 "pretty",
-                "html:target/cucumber-report.html"
+                "html:target/cucumber-report.html",
+                "hooks.ExtentStepReporter"
         },
         monochrome = true
 )

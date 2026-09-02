@@ -22,7 +22,16 @@ public class Hooks {
 
     private static final Logger logger = LoggerUtil.getLogger(Hooks.class);
     private static ExtentReports extent;
+
+    public static ExtentReports getExtent(){
+        return extent;
+    }
+
     private static ExtentTest etest;
+
+    public static ExtentTest getCurrentExtentTest(){
+        return etest;
+    }
 
     @BeforeAll
     public static void startReport(){
