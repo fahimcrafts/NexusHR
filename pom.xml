@@ -51,6 +51,12 @@
             <artifactId>cucumber-testng</artifactId>
             <version>7.34.3</version>
         </dependency>
+        <!--ExtentReports Integration-->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>5.1.2</version>
+        </dependency>
     </dependencies>
 
     <build>
