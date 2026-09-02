@@ -3,11 +3,14 @@ package hooks;
 import base.DriverFactory;
 
 import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import utils.LoggerUtil;
 import org.apache.logging.log4j.Logger;
@@ -15,8 +18,21 @@ import org.apache.logging.log4j.Logger;
 public class Hooks {
 
     private static final Logger logger = LoggerUtil.getLogger(Hooks.class);
-    private static final ExtentReports extent = new ExtentReports();
+    private static ExtentReports extent;
     private static ExtentTest etest;
+
+    @BeforeAll
+    public static void startReport(){
+        ExtentSparkReporter sparkReporter = new ExtentSparkReporter("target/extent-report.html");
+
+        sparkReporter.config().setDocumentTitle("NexusHR Automation Report");
+        sparkReporter.config().setReportName("NexusHR Test Execution Report");
+
+        extent = new ExtentReports();
+        extent.attachReporter(sparkReporter);
+
+        logger.info("ExtentReports initialized");
+    }
 
     @Before
     public void setUp(Scenario scenario) {
@@ -24,7 +40,6 @@ public class Hooks {
         DriverFactory.getDriver().get("https://opensource-demo.orangehrmlive.com/");
 
         etest = extent.createTest(scenario.getName());
-
 
         logger.info("Browser launched and application opened");
         logger.info("Extent test created for scenario: {}", scenario.getName());
@@ -42,6 +57,12 @@ public class Hooks {
         logger.info("Closing browser session");
 
        DriverFactory.getDriver().quit();
-       extent.flush();
+    }
+
+    @AfterAll
+    public static void endReport(){
+        extent.flush();
+
+        logger.info("ExtentReports flushed to target/extent-report.html");
     }
 }
