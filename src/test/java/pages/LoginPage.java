@@ -3,9 +3,6 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import java.time.Duration;
 
 public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver){
@@ -24,9 +21,5 @@ public class LoginPage extends BasePage {
         type(username, user);
         type(password, pass);
         click(loginBtn);
-    }
-
-    public boolean isLoginButtonVisible(){
-        return isDisplayed(loginBtn);
     }
 }
