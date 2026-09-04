@@ -40,7 +40,7 @@ public class AssignLeavePage extends BasePage{
     public void selectEmployee(String employeeName){
         type(employeeNameInput, employeeName);
 
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(autocompleteOptions, employeeName));
+        waitForText(autocompleteOptions, employeeName);
 
         for(WebElement option : driver.findElements(autocompleteOptions)){
             if(option.getText().equals(employeeName)){

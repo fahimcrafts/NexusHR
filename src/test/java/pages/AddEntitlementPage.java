@@ -40,7 +40,7 @@ public class AddEntitlementPage extends BasePage {
     public void selectEmployee(String employeeName){
         type(employeeNameInput, employeeName);
 
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(autocompleteOptions, employeeName));
+        waitForText(autocompleteOptions, employeeName);
 
         for(WebElement option : driver.findElements(autocompleteOptions)){
             if(option.getText().equals(employeeName)){
@@ -99,8 +99,7 @@ public class AddEntitlementPage extends BasePage {
             String actualText = option.getText().trim();
 
             if(actualText.equals(leavePeriod.trim())){
-                wait.until(ExpectedConditions.elementToBeClickable(option));
-                option.click();
+                waitForClickability(option).click();
 
                 periodFound = true;
                 break;
