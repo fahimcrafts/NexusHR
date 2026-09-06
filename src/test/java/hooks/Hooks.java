@@ -27,10 +27,10 @@ public class Hooks {
         return extent;
     }
 
-    private static ExtentTest etest;
+    private static final ThreadLocal<ExtentTest> etest = new ThreadLocal<>();
 
     public static ExtentTest getCurrentExtentTest(){
-        return etest;
+        return etest.get();
     }
 
     @BeforeAll
@@ -51,7 +51,7 @@ public class Hooks {
         DriverFactory.initDriver();
         DriverFactory.getDriver().get("https://opensource-demo.orangehrmlive.com/");
 
-        etest = extent.createTest(scenario.getName());
+        etest.set(extent.createTest(scenario.getName()));
 
         logger.info("Browser launched and application opened");
         logger.info("Extent test created for scenario: {}", scenario.getName());
@@ -64,14 +64,14 @@ public class Hooks {
                     .getScreenshotAs(OutputType.BYTES);
 
             scenario.attach(screenshot, "image/png", "Failure Screenshot");
-            etest.fail("Scenario failed")
+            etest.get().fail("Scenario failed")
                     .addScreenCaptureFromBase64String(
                             Base64.getEncoder().encodeToString(screenshot),
                             "Failure Screenshot"
                     );
         }
         else {
-            etest.pass("Scenario passed");
+            etest.get().pass("Scenario passed");
         }
 
         logger.info("Closing browser session");
