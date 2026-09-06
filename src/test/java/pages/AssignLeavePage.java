@@ -50,13 +50,7 @@ public class AssignLeavePage extends BasePage{
             }
         }
 
-        waitForVisibility(employeeNameInput);
-
-        String actualEmployeeName = getAttributeValue(employeeNameInput).trim().replaceAll("\\s+", " ");
-
-        if(!actualEmployeeName.equals(employeeName)){
-            throw new IllegalStateException("Failed to select employee: " + employeeName);
-        }
+        waitForInputValue(employeeNameInput, employeeName);
     }
 
     public void selectLeaveType(String leaveType){
