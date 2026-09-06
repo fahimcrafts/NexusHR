@@ -45,11 +45,7 @@ public class AssignLeavePage extends BasePage{
             if(option.getText().equals(employeeName)){
                 option.click();
 
-                wait.until(driver -> {
-                    String actual = getAttributeValue(employeeNameInput);
-                    return actual != null
-                            && actual.trim().replaceAll("\\s+", " ").equals(employeeName);
-                });
+                waitForInputValue(employeeNameInput, employeeName);
                 break;
             }
         }

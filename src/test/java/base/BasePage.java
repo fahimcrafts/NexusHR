@@ -36,6 +36,14 @@ public class BasePage {
         wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, expectedText));
     }
 
+    protected void waitForInputValue(By locator, String expectedValue){
+        wait.until(driver -> {
+            String actualValue = getAttributeValue(locator);
+            return actualValue != null
+                    && actualValue.trim().replaceAll("\\s+", " ").equals(expectedValue);
+        });
+    }
+
     protected WebElement waitForClickability(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
