@@ -76,7 +76,7 @@ public class Hooks {
 
         logger.info("Closing browser session");
 
-       DriverFactory.getDriver().quit();
+       DriverFactory.quitDriver();
     }
 
     @AfterAll
