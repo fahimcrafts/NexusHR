@@ -113,10 +113,6 @@ public class LeaveListPage extends BasePage {
                 "[.//div[contains(normalize-space(),'" + status + "')]]"
         );
 
-        System.out.println("Leave page URL: " + driver.getCurrentUrl());
-        System.out.println("Leave page text:");
-        System.out.println(driver.findElement(By.tagName("body")).getText());
-
         return isDisplayed(leaveRecord);
 
     }
