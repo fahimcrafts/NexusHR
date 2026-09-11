@@ -15,6 +15,11 @@ pipeline {
             steps {
                 bat 'mvn test'
             }
+
+            post{
+            always {
+                archiveArtifacts artifacts: 'target/extent-report.html'
+            }
         }
     }
 }
