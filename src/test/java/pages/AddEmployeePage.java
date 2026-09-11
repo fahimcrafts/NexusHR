@@ -19,6 +19,8 @@ public class AddEmployeePage extends BasePage {
     private final By saveButton =
             By.cssSelector("button[type='submit']");
 
+    private final By formLoader = By.cssSelector(".oxd-form-loader");
+
     private final By personalDetailsHeader =
             By.xpath("//a[normalize-space()='Personal Details']");
 
@@ -43,6 +45,7 @@ public class AddEmployeePage extends BasePage {
     }
 
     public void clickSave() {
+        waitForInvisibility(formLoader);
         click(saveButton);
     }
 
