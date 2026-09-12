@@ -27,6 +27,7 @@ public class LeaveModulePage extends BasePage {
     }
 
     public void openAssignLeaveMenu(){
-        click(assignLeaveMenu);
+        waitForVisibility(assignLeaveMenu);
+        driver.findElement(assignLeaveMenu).click();
     }
 }
