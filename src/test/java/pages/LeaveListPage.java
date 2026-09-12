@@ -100,7 +100,7 @@ public class LeaveListPage extends BasePage {
 
     public boolean isLeaveRecordDisplayed(String employeeName, String leaveType, String fromDate, String toDate, String status) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter uiFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter uiFormatter = DateTimeFormatter.ofPattern("yyyy-dd-MM");
 
         String expectedDate = LocalDate.parse(fromDate, inputFormatter).format(uiFormatter) +
                 " to " +

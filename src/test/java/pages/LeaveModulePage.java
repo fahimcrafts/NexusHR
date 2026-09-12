@@ -9,7 +9,8 @@ public class LeaveModulePage extends BasePage {
     private final By leaveHeader = By.xpath("//h6[normalize-space()='Leave']");
     private final By entitlementsDropdown = By.xpath("//span[normalize-space()='Entitlements']");
     private final By addEntitlementOption = By.xpath("//a[normalize-space()='Add Entitlements']");
-    private final By assignLeaveMenu = By.xpath("//a[normalize-space()='Assign Leave']");
+    private final By assignLeaveMenu = By.xpath("//li[contains(@class, 'oxd-topbar-body-nav-tab')]" +
+            "//a[normalize-space()='Assign Leave']");
 
     public LeaveModulePage(WebDriver driver){
         super(driver);
