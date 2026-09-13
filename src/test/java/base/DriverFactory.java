@@ -1,5 +1,6 @@
 package base;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -33,7 +34,7 @@ public class DriverFactory {
                 );
         }
 
-        driver.get().manage().window().maximize();
+        driver.get().manage().window().setSize(new Dimension(1920, 1080));
 
         return driver.get();
     }
