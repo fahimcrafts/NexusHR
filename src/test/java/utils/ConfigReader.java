@@ -27,7 +27,7 @@ public class ConfigReader {
     }
 
     public String getBrowser() {
-        return properties.getProperty("browser");
+        return System.getProperty("browser", properties.getProperty("browser"));
     }
 
     public String getUrl() {
