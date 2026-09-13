@@ -12,6 +12,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+import utils.ConfigReader;
 import utils.LoggerUtil;
 import org.apache.logging.log4j.Logger;
 import java.util.Base64;
@@ -49,7 +50,7 @@ public class Hooks {
     @Before
     public void setUp(Scenario scenario) {
         DriverFactory.initDriver();
-        DriverFactory.getDriver().get("https://opensource-demo.orangehrmlive.com/");
+        DriverFactory.getDriver().get(new ConfigReader().getUrl());
 
         etest.set(extent.createTest(scenario.getName()));
 
