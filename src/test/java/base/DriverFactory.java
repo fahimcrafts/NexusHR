@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import utils.ConfigReader;
 
 public class DriverFactory {
@@ -21,15 +22,19 @@ public class DriverFactory {
 
         switch(browser.toLowerCase()) {
             case "chrome":
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--headless=new");
-                options.addArguments("--window-size=1920,1080");
+                ChromeOptions cOptions = new ChromeOptions();
+                cOptions.addArguments("--headless=new");
+                cOptions.addArguments("--window-size=1920,1080");
 
-                driver.set(new ChromeDriver(options));
+                driver.set(new ChromeDriver(cOptions));
                 break;
 
             case "firefox":
-                driver.set(new FirefoxDriver());
+                FirefoxOptions fOptions = new FirefoxOptions();
+                fOptions.addArguments("--headless=new");
+                fOptions.addArguments("--window-size=1920,1080");
+
+                driver.set(new FirefoxDriver(fOptions));
                 break;
 
             default:
