@@ -1,6 +1,7 @@
 package base;
 
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -35,6 +36,13 @@ public class DriverFactory {
         }
 
         driver.get().manage().window().setSize(new Dimension(1920, 1080));
+
+        System.out.println("Jenkins Browser Window: "
+        + driver.get().manage().window().getSize());
+        System.out.println("Jenkins Viewport: "
+                + ((JavascriptExecutor) driver.get())
+                .executeScript("return window.innerWidth + 'x' + window.innerHeight;"
+                ));
 
         return driver.get();
     }
