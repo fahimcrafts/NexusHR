@@ -5,7 +5,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import utils.ConfigReader;
+
+import java.net.MalformedURLException;
+import java.net.URI;
 
 public class DriverFactory {
 
@@ -14,6 +18,7 @@ public class DriverFactory {
 
     public static WebDriver initDriver(){
         String browser = configReader.getBrowser();
+        String execution = configReader.getExecution();
 
         if(driver.get() != null){
             driver.get().quit();
@@ -26,7 +31,12 @@ public class DriverFactory {
                 cOptions.addArguments("--headless=new");
                 cOptions.addArguments("--window-size=1920,1080");
 
-                driver.set(new ChromeDriver(cOptions));
+                if(execution.equalsIgnoreCase("remote")){
+                    driver.set(createRemoteDriver(cOptions));
+                }
+                else {
+                    driver.set(new ChromeDriver(cOptions));
+                }
                 break;
 
             case "firefox":
@@ -34,7 +44,12 @@ public class DriverFactory {
                 fOptions.addArguments("--headless=new");
                 fOptions.addArguments("--window-size=1920,1080");
 
-                driver.set(new FirefoxDriver(fOptions));
+                if(execution.equalsIgnoreCase("remote")){
+                    driver.set(createRemoteDriver(fOptions));
+                }
+                else {
+                    driver.set(new FirefoxDriver(fOptions));
+                }
                 break;
 
             default:
@@ -44,6 +59,17 @@ public class DriverFactory {
         }
 
         return driver.get();
+    }
+
+    private static WebDriver createRemoteDriver(org.openqa.selenium.MutableCapabilities options){
+        try{
+            return new RemoteWebDriver(
+                    URI.create(configReader.getRemoteUrl()).toURL(), options
+            );
+        }
+        catch (MalformedURLException e){
+            throw new RuntimeException("Invalid remote WebDriver URL", e);
+        }
     }
 
     public static WebDriver getDriver(){

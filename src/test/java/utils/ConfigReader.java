@@ -26,11 +26,19 @@ public class ConfigReader {
         }
     }
 
-    public String getBrowser() {
+    public String getBrowser(){
         return System.getProperty("browser", properties.getProperty("browser"));
     }
 
-    public String getUrl() {
+    public String getExecution(){
+        return System.getProperty("execution", properties.getProperty("execution"));
+    }
+
+    public String getRemoteUrl(){
+        return System.getProperty("remote.url", properties.getProperty("remote.url"));
+    }
+
+    public String getUrl(){
         return properties.getProperty("url");
     }
 }
