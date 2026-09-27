@@ -4,7 +4,6 @@ import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 public class AddEntitlementPage extends BasePage {
     private final By addEntitlementTitle = By.xpath("//p[normalize-space()='Add Leave Entitlement']");
@@ -61,10 +60,7 @@ public class AddEntitlementPage extends BasePage {
 
         for(WebElement option : driver.findElements(leaveTypeOptions)){
             if(option.getText().equals(leaveType)){
-                Actions actions = new Actions(driver);
-                actions.moveToElement(option)
-                        .click()
-                        .perform();
+                option.click();
 
                 typeFound = true;
                 break;
