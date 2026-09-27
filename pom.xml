@@ -12,6 +12,9 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <execution>local</execution>
+        <remote.url>http://localhost:4444</remote.url>
     </properties>
 
     <dependencies>
@@ -71,9 +74,31 @@
                     <includes>
                         <include>**/SuiteRunner.java</include>
                     </includes>
+
+                    <systemPropertyVariables>
+                        <execution>${execution}</execution>
+                        <remote.url>${remote.url}</remote.url>
+                    </systemPropertyVariables>
                 </configuration>
 
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>remote</id>
+            <properties>
+                <execution>remote</execution>
+                <remote.url>http://localhost:4444</remote.url>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>local</id>
+            <properties>
+                <execution>local</execution>
+            </properties>
+        </profile>
+    </profiles>
 </project>
