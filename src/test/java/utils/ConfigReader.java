@@ -38,6 +38,14 @@ public class ConfigReader {
         return System.getProperty("remote.url", properties.getProperty("remote.url"));
     }
 
+    public String getCloudUsername(){
+        return System.getenv("CLOUD_USERNAME");
+    }
+
+    public String getCloudAccessKey(){
+        return System.getenv("CLOUD_ACCESS_KEY");
+    }
+
     public boolean isHeadless(){
         return Boolean.parseBoolean(
                 System.getProperty("headless", properties.getProperty("headless"))
