@@ -15,6 +15,7 @@
 
         <execution>local</execution>
         <remote.url>http://localhost:4444</remote.url>
+        <browser>chrome</browser>
     </properties>
 
     <dependencies>
@@ -78,6 +79,7 @@
                     <systemPropertyVariables>
                         <execution>${execution}</execution>
                         <remote.url>${remote.url}</remote.url>
+                        <browser>${browser}</browser>
                     </systemPropertyVariables>
 
                     <properties>
