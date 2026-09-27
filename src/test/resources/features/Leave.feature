@@ -13,7 +13,8 @@ Feature: Leave Module Navigation
     And I navigate to Add Entitlements
     And I select employee for the leave workflow
     And I select leave type: "CAN - FMLA"
-    And I select leave period: "2026-01-01 - 2026-31-12"
+    And I select leave period: "2026-01-01 - 2027-28-02"
+    #Above needs to be swapped from 2026-31-12-> 2027-28-02 at times
     And I enter entitlement "2.25"
     And I click save
     Then The Update Entitlement pop up should be displayed
