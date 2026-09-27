@@ -79,6 +79,13 @@
                         <execution>${execution}</execution>
                         <remote.url>${remote.url}</remote.url>
                     </systemPropertyVariables>
+
+                    <properties>
+                        <property>
+                            <name>dataproviderthreadcount</name>
+                            <value>2</value>
+                        </property>
+                    </properties>
                 </configuration>
 
             </plugin>
