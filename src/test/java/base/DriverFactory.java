@@ -19,6 +19,7 @@ public class DriverFactory {
     public static WebDriver initDriver(){
         String browser = configReader.getBrowser();
         String execution = configReader.getExecution();
+        boolean headless = configReader.isHeadless();
 
         if(driver.get() != null){
             driver.get().quit();
@@ -28,7 +29,10 @@ public class DriverFactory {
         switch(browser.toLowerCase()) {
             case "chrome":
                 ChromeOptions cOptions = new ChromeOptions();
-                cOptions.addArguments("--headless=new");
+                if(headless){
+                    cOptions.addArguments("--headless=new");
+                }
+
                 cOptions.addArguments("--window-size=1920,1080");
 
                 if(execution.equalsIgnoreCase("remote")){
@@ -41,7 +45,10 @@ public class DriverFactory {
 
             case "firefox":
                 FirefoxOptions fOptions = new FirefoxOptions();
-                fOptions.addArguments("--headless=new");
+                if(headless){
+                    fOptions.addArguments("--headless=new");
+                }
+
                 fOptions.addArguments("--window-size=1920,1080");
 
                 if(execution.equalsIgnoreCase("remote")){

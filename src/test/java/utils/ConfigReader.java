@@ -38,6 +38,12 @@ public class ConfigReader {
         return System.getProperty("remote.url", properties.getProperty("remote.url"));
     }
 
+    public boolean isHeadless(){
+        return Boolean.parseBoolean(
+                System.getProperty("headless", properties.getProperty("headless"))
+        );
+    }
+
     public String getUrl(){
         return properties.getProperty("url");
     }
